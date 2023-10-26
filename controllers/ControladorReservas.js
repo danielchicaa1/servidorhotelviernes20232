@@ -42,11 +42,25 @@ export class ControladorReservas {
   }
   registrar(request, response) {
     try {
+      let servicioReserva = new ServicioReserva();
       let datos = request.body;
-      response.status(200).json({
-        mensaje: "exito buscando los datos",
-        datos: "aca los datos",
-      });
+      if (datos.fechaInicioReserva && datos.fechaFinalReserva) {
+        let diferencia = Math.floor(
+          (new Date(datos.fechaFinalReserva) -
+            new Date(datos.fechaInicioReserva)) /
+            (1000 * 60 * 60 * 24)
+        );
+
+        response.status(200).json({
+          "mensaje": "Éxito registrando los datos",
+          "datos": datos,
+          "Dias a hospedar": diferencia,
+        });
+      } else {
+        response.status(400).json({
+          mensaje: "Faltan fechas en los datos.",
+        });
+      }
     } catch (error) {
       response.status(400).json({
         mensaje: "fallamos" + error,
