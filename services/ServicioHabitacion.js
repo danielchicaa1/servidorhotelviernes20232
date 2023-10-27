@@ -1,4 +1,4 @@
-import { modeloHabitacion } from "../models/modeloHabitacion"
+import { modeloHabitacion } from "../models/modeloHabitacion.js"
 export class ServicioHabitacion {
     constructor() {}
 
@@ -19,7 +19,7 @@ export class ServicioHabitacion {
     }
     // completar
     async eliminar(id){
-        let reserva=await modeloHabitacion.deleteOne(id)
+        let reserva=await modeloHabitacion.findByIdAndRemove(id)
         return reserva
             
     } 
