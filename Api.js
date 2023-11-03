@@ -1,4 +1,5 @@
 //Esta clase representa un servidor
+import cors from 'cors'
 import express from "express";
 import {rutasAPI} from "./routes/rutasHoteles.js"
 
@@ -21,6 +22,7 @@ export class Api {
 
   //2. Atiende las peticiones y responde
   procesarPeticiones() {
+    this.app.unsubscribe(cors())
     this.app.use(express.json())
     this.app.use("/",rutasAPI)
     
