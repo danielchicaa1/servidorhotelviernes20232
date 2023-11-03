@@ -7,7 +7,7 @@ export class ServicioReserva {
     return reservas
   }
   async buscarPorId(id) {
-    let reserva=await modeloReservas.findId(id)
+    let reserva=await modeloReservas.findById(id)
     return reserva
   }
   async modificar(id, datos) {
